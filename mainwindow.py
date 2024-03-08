@@ -2,7 +2,7 @@
 # This Python file uses the following encoding: utf-8
 import sys
 import json
-from PySide6.QtWidgets import QApplication, QMainWindow, QCheckBox, QMessageBox, QSpacerItem, QSizePolicy
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QSpacerItem, QSizePolicy, QButtonGroup
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -32,14 +32,17 @@ class MainWindow(QMainWindow):
         self.header_row = []
         self.first_row = []
         self.json_list = {}
-        self.populate_json_list()
+        self.display_json_list = {}
+        self.button_group = QButtonGroup()
+        self.button_group.buttonClicked.connect(self.add_json_list)
 
         self.ui.customer_review.clicked.connect(self.toggle_review)
         self.ui.in_stock.clicked.connect(self.toggle_stock)
         self.ui.visible.clicked.connect(self.toggle_visible)
         self.ui.published.clicked.connect(self.toggle_published)
-
         self.ui.create_list.clicked.connect(self.create_new_list)
+
+        self.populate_json_list()
 
     def populate_json_list(self):
         try:
@@ -47,24 +50,27 @@ class MainWindow(QMainWindow):
                 if json_file:
                     self.json_list = json.load(json_file)
                     self.create_list_checkboxes(self.json_list.keys())
-                    self.show_json_list()
         except Exception as ex:
             print(ex)
 
-    def show_json_list(self):
-        for key, value in zip(self.json_list.keys(), self.json_list.values()):
+    def update_showm_json_list(self, display_list):
+        self.ui.json_list.clear()
+        for key, value in zip(display_list.keys(), display_list.values()):
             self.ui.json_list.append(f"{key}: {value}")
 
-    def add_json_list(self, list_name):
+    def add_json_list(self, btn):
+        if btn.text() in self.display_json_list.keys():
+            self.display_json_list.pop(btn.text())
+        else:
+            self.display_json_list.update({btn.text(): self.json_list[btn.text()]})
 
-        pass
+        self.update_showm_json_list(self.display_json_list)
 
     def create_list_checkboxes(self, values):
         for value in values:
-            checkbox = QCheckBox(value)
-            checkbox.setObjectName(f"{value}")
-            checkbox.clicked.connect(self.add_json_list)
-            self.ui.scrollAreaWidgetContents.layout().addWidget(checkbox)
+            button = QPushButton(value)
+            self.ui.scrollAreaWidgetContents.layout().addWidget(button)
+            self.button_group.addButton(button)
 
         vertical_spacer = QSpacerItem(20, 40, QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.ui.scrollAreaWidgetContents.layout().addItem(vertical_spacer)
