@@ -1,4 +1,3 @@
-
 # This Python file uses the following encoding: utf-8
 import csv
 import json
@@ -9,12 +8,15 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBo
 
 from itertools import product
 
-
 # Important:
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py, or
 #     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_MainWindow
+
+
+# ToDo:
+
 
 
 def populate_json_file(json_name, json_data):
@@ -49,14 +51,37 @@ def generate_combinations(*lists):
     return all_combinations
 
 
+def calculate_product_price(combination, prices):
+    price_total = 0
+    for _ in range(len(combination) // len(combination)):
+        dual_axis = False
+        three_axis = False
+        # Get the price of the stage
+        for component in combination:
+            if dual_axis:
+                price_total += int(prices[component]) * 2
+            elif three_axis:
+                price_total += int(prices[component]) * 3
+            else:
+                price_total += int(prices[component])
+            # If the config is a multi-stage axis multiply the components by number of stages
+            if component == "Dual Axis-Flat (XY)" or component == "Dual Axis-Edge Mount (XZ)":
+                dual_axis = True
+            elif component == "Three Axiz (XYZ)":
+                three_axis = True
+
+    return price_total
+
+
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # ToDo: After creating the csv file the params should get rid of the Attribute stuff/go back to a defualt list
         self.params = ["Id", "Type", "Name", "Regular price", "Parent"]
-        self.first_row = []
+        self.added_params = []
         self.dict_list = ()
         self.json_list = {}
         self.display_json_list = {}
@@ -74,28 +99,80 @@ class MainWindow(QMainWindow):
 
         self.populate_json_list()
 
+    def complete_params(self):
+
+        for arg in range(len(self.dict_list)):
+            self.params.append(f"Attribute {arg} Name")
+            self.params.append(f"Attribute {arg} value(s)")
+            self.params.append(f"Attribute {arg} global")
+
     def make_dict_list(self):
         for key in self.display_json_list.keys():
             self.dict_list += (self.json_list[key],)
 
+    def create_first_row(self):
+        first_row = [self.ui.product_id.text(), "Variable", self.ui.product_name.text(), 0, "", ]
+        added_params = ()
+        for param in self.added_params:
+            self.params.append(param)
+            first_row.append(1)
+            added_params += (1, )
+        for key in self.display_json_list.keys():
+            first_row.append(key)
+            values = ""
+            v = self.display_json_list[key]
+            i = 0
+            for k in v:
+                if i == len(v) - 1:
+                    values += f"{k}"
+                else:
+                    values += f"{k}, "
+                i += 1
+            first_row.append(values)
+            first_row.append(1)
+
+        return first_row, added_params
 
     def create_csv_file(self):
-        self.make_dict_list()
+        product_name = self.ui.product_name.text()
+        product_id = self.ui.product_id.text()
 
+        self.make_dict_list()
         prices = get_prices(*self.dict_list)
         combinations = generate_combinations(*self.dict_list)
-        print(combinations)
-        return
+        first_row, added_params = self.create_first_row()
+        self.complete_params()
 
+        price_combos = []
+        for combination in combinations:
+            total_price = calculate_product_price(combination, prices)
+            last_tuple = ()
+            i = 0
+            for key in self.display_json_list.keys():
+                last_tuple += (key, combination[i], 1)
+                i += 1
+
+            price_combos.append(
+                (
+                    "",
+                    "Variation",
+                    product_name,
+                    total_price,
+                    f"id:{product_id}"
+                )
+                +
+                added_params
+                +
+                last_tuple
+            )
 
         # Write combinations and prices to a CSV file
-        with open(f"{self.ui.csv_file_name.text()}", "w", newline="") as csvfile:
+        with open(f"{self.ui.csv_file_name.text()}.csv", "a", newline="") as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(self.params)
-            csv_writer.writerow(self.first_row)
-            #csv_writer.writerows(price_combos)
+            csv_writer.writerow(first_row)
+            csv_writer.writerows(price_combos)
         pass
-
 
     def save_list(self):
         # ToDo: Get this to work properly
@@ -105,7 +182,6 @@ class MainWindow(QMainWindow):
         for line in self.ui.json_list.toPlainText().splitlines():
             values = json.dumps(line)
             new_list.update({values[0]: values[1]})
-
 
     def edit_list(self):
         self.ui.json_list.setReadOnly(False)
@@ -129,7 +205,6 @@ class MainWindow(QMainWindow):
             self.display_json_list.pop(btn.text())
         else:
             self.display_json_list.update({btn.text(): self.json_list[btn.text()]})
-        print(self.display_json_list.keys())
 
         self.update_showm_json_list(self.display_json_list)
 
@@ -156,7 +231,7 @@ class MainWindow(QMainWindow):
         # Take each line in the text box and split it on the ":". Then add it to the dictinary
         for line in self.ui.list_box.toPlainText().splitlines():
             values = line.split(":")
-            new_list.update({values[0]: values[1]})
+            new_list.update({values[0]: int(values[1])})
 
         populate_json_file(self.ui.list_name.text(), new_list)
         self.populate_json_list()
@@ -167,33 +242,27 @@ class MainWindow(QMainWindow):
 
     def toggle_published(self):
         if self.ui.published.isChecked():
-            self.params.append('Published')
+            self.added_params.append('Published')
         if not self.ui.published.isChecked():
-            self.params.remove('Published')
-        print(self.params)
+            self.added_params.remove('Published')
 
     def toggle_visible(self):
         if self.ui.visible.isChecked():
-            self.params.append('Visible')
+            self.added_params.append('Visible')
         if not self.ui.visible.isChecked():
-            self.params.remove('Visible')
-
-        print(self.params)
+            self.added_params.remove('Visible')
 
     def toggle_stock(self):
         if self.ui.in_stock.isChecked():
-            self.params.append('In Stock?')
+            self.added_params.append('In Stock?')
         if not self.ui.in_stock.isChecked():
-            self.params.remove('In Stock?')
-        print(self.params)
+            self.added_params.remove('In Stock?')
 
     def toggle_review(self):
         if self.ui.customer_review.isChecked():
-            self.params.append("Allow customer review")
+            self.added_params.append("Allow customer review")
         if not self.ui.customer_review.isChecked():
-            self.params.remove("Allow customer review")
-
-        print(self.params)
+            self.added_params.remove("Allow customer review")
 
 
 if __name__ == "__main__":

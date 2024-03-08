@@ -1,0 +1,10 @@
+Id,Type,Name,Regular price,Parent,In Stock?,Allow customer review,Published,Attribute 0 Name,Attribute 0 value(s),Attribute 0 global,Attribute 1 Name,Attribute 1 value(s),Attribute 1 global
+505,Variable,FOS,0,,1,1,1,Axis,"Single Axis (X), Dual Axis-Flat (XY), Dual Axis-Edge Mount (XZ), Three Axiz (XYZ)",1,Backlash,"No Anti-Backlash, With Anti-Backlash",1
+,Variation,FOS,1,id:505,1,1,1,Axis,Single Axis (X),1,Backlash,No Anti-Backlash,1
+,Variation,FOS,6,id:505,1,1,1,Axis,Single Axis (X),1,Backlash,With Anti-Backlash,1
+,Variation,FOS,2,id:505,1,1,1,Axis,Dual Axis-Flat (XY),1,Backlash,No Anti-Backlash,1
+,Variation,FOS,12,id:505,1,1,1,Axis,Dual Axis-Flat (XY),1,Backlash,With Anti-Backlash,1
+,Variation,FOS,2,id:505,1,1,1,Axis,Dual Axis-Edge Mount (XZ),1,Backlash,No Anti-Backlash,1
+,Variation,FOS,12,id:505,1,1,1,Axis,Dual Axis-Edge Mount (XZ),1,Backlash,With Anti-Backlash,1
+,Variation,FOS,3,id:505,1,1,1,Axis,Three Axiz (XYZ),1,Backlash,No Anti-Backlash,1
+,Variation,FOS,18,id:505,1,1,1,Axis,Three Axiz (XYZ),1,Backlash,With Anti-Backlash,1

@@ -1,0 +1,12 @@
+Id,Type,Name,Regular price,Parent,Attribute 0 Name,Attribute 0 value(s),Attribute 0 global
+,Variable,,0,,Axis,"Single Axis (X), Dual Axis-Flat (XY), Dual Axis-Edge Mount (XZ), Three Axiz (XYZ)",1
+,Variation,,1,id:,Axis,Single Axis (X),1
+,Variation,,2,id:,Axis,Dual Axis-Flat (XY),1
+,Variation,,2,id:,Axis,Dual Axis-Edge Mount (XZ),1
+,Variation,,3,id:,Axis,Three Axiz (XYZ),1
+Id,Type,Name,Regular price,Parent,Attribute 0 Name,Attribute 0 value(s),Attribute 0 global
+,Variable,,0,,Axis,"Single Axis (X), Dual Axis-Flat (XY), Dual Axis-Edge Mount (XZ), Three Axiz (XYZ)",1
+,Variation,,1,id:,Axis,Single Axis (X),1
+,Variation,,2,id:,Axis,Dual Axis-Flat (XY),1
+,Variation,,2,id:,Axis,Dual Axis-Edge Mount (XZ),1
+,Variation,,3,id:,Axis,Three Axiz (XYZ),1
