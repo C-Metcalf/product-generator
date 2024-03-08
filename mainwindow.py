@@ -15,8 +15,10 @@ from itertools import product
 from ui_form import Ui_MainWindow
 
 
-# ToDo:
-
+# ToDo: Make a pop up window for editting a list. Have a combo box that has all the different list names.
+#  When a user selects the name that will populate another combo box with the keys of that list.
+#  Once that key has been selected the value corrisponding to the key will be populated and allow the user to edit the
+#  value if need be
 
 
 def populate_json_file(json_name, json_data):
@@ -26,6 +28,7 @@ def populate_json_file(json_name, json_data):
         data = json.load(json_file)
         data.update({json_name: json_data})
         new_dict.update(data)
+
     with open('lists.json', 'w') as json_file:
         json.dump(new_dict, json_file)
 
