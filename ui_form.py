@@ -32,7 +32,34 @@ class Ui_MainWindow(object):
         self.list_name = QLineEdit(self.centralwidget)
         self.list_name.setObjectName(u"list_name")
 
-        self.gridLayout.addWidget(self.list_name, 3, 2, 1, 1)
+        self.gridLayout.addWidget(self.list_name, 6, 2, 1, 1)
+
+        self.save_list = QPushButton(self.centralwidget)
+        self.save_list.setObjectName(u"save_list")
+        self.save_list.setCheckable(False)
+
+        self.gridLayout.addWidget(self.save_list, 6, 1, 1, 1)
+
+        self.csv_btn = QPushButton(self.centralwidget)
+        self.csv_btn.setObjectName(u"csv_btn")
+
+        self.gridLayout.addWidget(self.csv_btn, 4, 0, 1, 1)
+
+        self.csv_file_name = QLineEdit(self.centralwidget)
+        self.csv_file_name.setObjectName(u"csv_file_name")
+
+        self.gridLayout.addWidget(self.csv_file_name, 6, 0, 1, 1)
+
+        self.json_list = QTextEdit(self.centralwidget)
+        self.json_list.setObjectName(u"json_list")
+        self.json_list.setReadOnly(True)
+
+        self.gridLayout.addWidget(self.json_list, 7, 1, 1, 1)
+
+        self.edit_list = QPushButton(self.centralwidget)
+        self.edit_list.setObjectName(u"edit_list")
+
+        self.gridLayout.addWidget(self.edit_list, 4, 1, 1, 1)
 
         self.scrollArea = QScrollArea(self.centralwidget)
         self.scrollArea.setObjectName(u"scrollArea")
@@ -44,7 +71,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
-        self.gridLayout.addWidget(self.scrollArea, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.scrollArea, 7, 0, 1, 1)
 
         self.groupBox = QGroupBox(self.centralwidget)
         self.groupBox.setObjectName(u"groupBox")
@@ -114,38 +141,12 @@ class Ui_MainWindow(object):
         self.list_box = QTextEdit(self.centralwidget)
         self.list_box.setObjectName(u"list_box")
 
-        self.gridLayout.addWidget(self.list_box, 4, 2, 1, 1)
+        self.gridLayout.addWidget(self.list_box, 7, 2, 1, 1)
 
         self.create_list = QPushButton(self.centralwidget)
         self.create_list.setObjectName(u"create_list")
 
-        self.gridLayout.addWidget(self.create_list, 2, 2, 1, 1)
-
-        self.edit_list = QPushButton(self.centralwidget)
-        self.edit_list.setObjectName(u"edit_list")
-
-        self.gridLayout.addWidget(self.edit_list, 2, 1, 1, 1)
-
-        self.save_list = QPushButton(self.centralwidget)
-        self.save_list.setObjectName(u"save_list")
-
-        self.gridLayout.addWidget(self.save_list, 3, 1, 1, 1)
-
-        self.json_list = QTextEdit(self.centralwidget)
-        self.json_list.setObjectName(u"json_list")
-        self.json_list.setReadOnly(True)
-
-        self.gridLayout.addWidget(self.json_list, 4, 1, 1, 1)
-
-        self.csv_file_name = QLineEdit(self.centralwidget)
-        self.csv_file_name.setObjectName(u"csv_file_name")
-
-        self.gridLayout.addWidget(self.csv_file_name, 2, 0, 1, 1)
-
-        self.csv_btn = QPushButton(self.centralwidget)
-        self.csv_btn.setObjectName(u"csv_btn")
-
-        self.gridLayout.addWidget(self.csv_btn, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.create_list, 4, 2, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -164,6 +165,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.list_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Name Of List", None))
+        self.save_list.setText(QCoreApplication.translate("MainWindow", u"Save List", None))
+        self.csv_btn.setText(QCoreApplication.translate("MainWindow", u"Create CSV File", None))
+        self.csv_file_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Name Of CSV File", None))
+        self.edit_list.setText(QCoreApplication.translate("MainWindow", u"Edit List", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Basic Product Info", None))
         self.customer_review.setText(QCoreApplication.translate("MainWindow", u"Allow for Customer Reviews", None))
         self.visible.setText(QCoreApplication.translate("MainWindow", u"Visible", None))
@@ -180,9 +185,5 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.list_box.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Name:Value", None))
         self.create_list.setText(QCoreApplication.translate("MainWindow", u"Create List", None))
-        self.edit_list.setText(QCoreApplication.translate("MainWindow", u"Edit List", None))
-        self.save_list.setText(QCoreApplication.translate("MainWindow", u"Save List", None))
-        self.csv_file_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Name Of CSV File", None))
-        self.csv_btn.setText(QCoreApplication.translate("MainWindow", u"Create CSV File", None))
     # retranslateUi
 

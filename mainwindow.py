@@ -22,6 +22,13 @@ def populate_json_file(json_name, json_data):
         json.dump(new_dict, json_file)
 
 
+def clearLayout(layout):
+    while layout.count():
+        child = layout.takeAt(0)
+        if child.widget():
+            child.widget().deleteLater()
+
+
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -67,6 +74,7 @@ class MainWindow(QMainWindow):
         self.update_showm_json_list(self.display_json_list)
 
     def create_list_checkboxes(self, values):
+        clearLayout(self.ui.scrollAreaWidgetContents.layout())
         for value in values:
             button = QPushButton(value)
             self.ui.scrollAreaWidgetContents.layout().addWidget(button)
@@ -76,7 +84,6 @@ class MainWindow(QMainWindow):
         self.ui.scrollAreaWidgetContents.layout().addItem(vertical_spacer)
 
     def create_new_list(self):
-        # ToDo: Look at the text box, grab each line and put it into a dict
         # Check if the user forgot to enter values into the the title bar or the text box
         if not self.ui.list_name.text():
             msg_box = QMessageBox.critical(self, "Missing Information", "You forgot to give the list a name")
@@ -92,8 +99,7 @@ class MainWindow(QMainWindow):
             new_list.update({values[0]: values[1]})
 
         populate_json_file(self.ui.list_name.text(), new_list)
-
-
+        self.populate_json_list()
 
     def convert_list_to_tuple(self):
         # ToDO: When the user presses create list turn the three lists into tuples
