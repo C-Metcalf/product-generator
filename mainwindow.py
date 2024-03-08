@@ -1,8 +1,14 @@
 
 # This Python file uses the following encoding: utf-8
-import sys
+import csv
 import json
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QSpacerItem, QSizePolicy, QButtonGroup
+import sys
+
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QSpacerItem, QSizePolicy, \
+    QButtonGroup
+
+from itertools import product
+
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -29,6 +35,20 @@ def clearLayout(layout):
             child.widget().deleteLater()
 
 
+def get_prices(*args):
+    prices = {}
+    for component_dict in args:
+        for component, price in component_dict.items():
+            prices[component] = price
+    return prices
+
+
+def generate_combinations(*lists):
+    # Generate all possible combinations of elements from the input lists
+    all_combinations = list(product(*lists))
+    return all_combinations
+
+
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -36,8 +56,8 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         self.params = ["Id", "Type", "Name", "Regular price", "Parent"]
-        self.header_row = []
         self.first_row = []
+        self.dict_list = ()
         self.json_list = {}
         self.display_json_list = {}
         self.button_group = QButtonGroup()
@@ -48,8 +68,47 @@ class MainWindow(QMainWindow):
         self.ui.visible.clicked.connect(self.toggle_visible)
         self.ui.published.clicked.connect(self.toggle_published)
         self.ui.create_list.clicked.connect(self.create_new_list)
+        self.ui.edit_list.clicked.connect(self.edit_list)
+        self.ui.save_list.clicked.connect(self.save_list)
+        self.ui.csv_btn.clicked.connect(self.create_csv_file)
 
         self.populate_json_list()
+
+    def make_dict_list(self):
+        for key in self.display_json_list.keys():
+            self.dict_list += (self.json_list[key],)
+
+
+    def create_csv_file(self):
+        self.make_dict_list()
+
+        prices = get_prices(*self.dict_list)
+        combinations = generate_combinations(*self.dict_list)
+        print(combinations)
+        return
+
+
+        # Write combinations and prices to a CSV file
+        with open(f"{self.ui.csv_file_name.text()}", "w", newline="") as csvfile:
+            csv_writer = csv.writer(csvfile)
+            csv_writer.writerow(self.params)
+            csv_writer.writerow(self.first_row)
+            #csv_writer.writerows(price_combos)
+        pass
+
+
+    def save_list(self):
+        # ToDo: Get this to work properly
+        #  Possible solution: Have a pop up widow that has you select the list to edit. Seperate every key and value
+        new_list = {}
+        # Take each line in the text box and split it on the ":". Then add it to the dictinary
+        for line in self.ui.json_list.toPlainText().splitlines():
+            values = json.dumps(line)
+            new_list.update({values[0]: values[1]})
+
+
+    def edit_list(self):
+        self.ui.json_list.setReadOnly(False)
 
     def populate_json_list(self):
         try:
@@ -70,6 +129,7 @@ class MainWindow(QMainWindow):
             self.display_json_list.pop(btn.text())
         else:
             self.display_json_list.update({btn.text(): self.json_list[btn.text()]})
+        print(self.display_json_list.keys())
 
         self.update_showm_json_list(self.display_json_list)
 
