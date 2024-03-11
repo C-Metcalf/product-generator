@@ -17,7 +17,28 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\t.csv">
+        <entry key="\MM-1CR-EX.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\MM-1CRB.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\MM-2CR.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\MM-2CRB.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

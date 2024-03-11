@@ -1,0 +1,26 @@
+Id,Type,Name,Regular price,Parent,Attribute 0 Name,Attribute 0 value(s),Attribute 0 global,Attribute 1 Name,Attribute 1 value(s),Attribute 1 global,Attribute 2 Name,Attribute 2 value(s),Attribute 2 global
+105,Variable,MM-1CRB,0,,Axis,"Single Axis (X), Dual Axis-Flat (XY), Dual Axis-Edge Mount (XZ), Three Axis (XYZ)",1,Vacuum Compatibility,"10^-3 Torr, 10^-6 Torr",1,Actuator,"80 TPI Thumbscrew (standard), Headless Lead Screw, Thumb Grip",1
+,Variation,MM-1CRB,285,id:105,Axis,Single Axis (X),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew (standard),1
+,Variation,MM-1CRB,300,id:105,Axis,Single Axis (X),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Headless Lead Screw,1
+,Variation,MM-1CRB,300,id:105,Axis,Single Axis (X),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-1CRB,300,id:105,Axis,Single Axis (X),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,80 TPI Thumbscrew (standard),1
+,Variation,MM-1CRB,315,id:105,Axis,Single Axis (X),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Headless Lead Screw,1
+,Variation,MM-1CRB,315,id:105,Axis,Single Axis (X),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-1CRB,573,id:105,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew (standard),1
+,Variation,MM-1CRB,603,id:105,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Headless Lead Screw,1
+,Variation,MM-1CRB,603,id:105,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-1CRB,603,id:105,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,80 TPI Thumbscrew (standard),1
+,Variation,MM-1CRB,633,id:105,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Headless Lead Screw,1
+,Variation,MM-1CRB,633,id:105,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-1CRB,620,id:105,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew (standard),1
+,Variation,MM-1CRB,650,id:105,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Headless Lead Screw,1
+,Variation,MM-1CRB,650,id:105,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-1CRB,650,id:105,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,80 TPI Thumbscrew (standard),1
+,Variation,MM-1CRB,680,id:105,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Headless Lead Screw,1
+,Variation,MM-1CRB,680,id:105,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-1CRB,908,id:105,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew (standard),1
+,Variation,MM-1CRB,953,id:105,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Headless Lead Screw,1
+,Variation,MM-1CRB,953,id:105,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-1CRB,953,id:105,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,80 TPI Thumbscrew (standard),1
+,Variation,MM-1CRB,998,id:105,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Headless Lead Screw,1
+,Variation,MM-1CRB,998,id:105,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Thumb Grip,1

@@ -67,10 +67,11 @@ def calculate_product_price(combination, prices):
                 price_total += int(prices[component]) * 3
             else:
                 price_total += int(prices[component])
+
             # If the config is a multi-stage axis multiply the components by number of stages
             if component == "Dual Axis-Flat (XY)" or component == "Dual Axis-Edge Mount (XZ)":
                 dual_axis = True
-            elif component == "Three Axiz (XYZ)":
+            elif component == "Three Axis (XYZ)":
                 three_axis = True
 
     return price_total
@@ -91,6 +92,7 @@ class MainWindow(QMainWindow):
         self.button_group = QButtonGroup()
         self.button_group.buttonClicked.connect(self.add_json_list)
 
+        self.ui.product_name.returnPressed.connect(self.set_file_name)
         self.ui.customer_review.clicked.connect(self.toggle_review)
         self.ui.in_stock.clicked.connect(self.toggle_stock)
         self.ui.visible.clicked.connect(self.toggle_visible)
@@ -100,7 +102,16 @@ class MainWindow(QMainWindow):
         self.ui.save_list.clicked.connect(self.save_list)
         self.ui.csv_btn.clicked.connect(self.create_csv_file)
 
+        self.ui.edit_list.clicked.connect(self.edit_list)
+
         self.populate_json_list()
+
+    def edit_list(self):
+        pass
+
+    def set_file_name(self):
+        text = self.ui.product_name.text()
+        self.ui.csv_file_name.setText(text)
 
     def complete_params(self):
 
@@ -170,7 +181,7 @@ class MainWindow(QMainWindow):
             )
 
         # Write combinations and prices to a CSV file
-        with open(f"{self.ui.csv_file_name.text()}.csv", "a", newline="") as csvfile:
+        with open(f"CSV Files/{self.ui.csv_file_name.text()}.csv", "a", newline="") as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(self.params)
             csv_writer.writerow(first_row)

@@ -1,0 +1,26 @@
+Id,Type,Name,Regular price,Parent,Allow customer review,In Stock?,Visible,Published,Attribute 0 Name,Attribute 0 value(s),Attribute 0 global,Attribute 1 Name,Attribute 1 value(s),Attribute 1 global,Attribute 2 Name,Attribute 2 value(s),Attribute 2 global
+110,Variable,MM-2CRB,0,,1,1,1,1,Axis,"Single Axis (X), Dual Axis-Flat (XY), Dual Axis-Edge Mount (XZ), Three Axis (XYZ)",1,Vacuum Compatibility,"10^-3 Torr, 10^-6 Torr",1,Actuator,"80 TPI Thumbscrew, Mircometer Head, Thumb Grip",1
+,Variation,MM-2CRB,298,id:110,1,1,1,1,Axis,Single Axis (X),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-2CRB,398,id:110,1,1,1,1,Axis,Single Axis (X),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Mircometer Head,1
+,Variation,MM-2CRB,313,id:110,1,1,1,1,Axis,Single Axis (X),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-2CRB,313,id:110,1,1,1,1,Axis,Single Axis (X),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-2CRB,413,id:110,1,1,1,1,Axis,Single Axis (X),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Mircometer Head,1
+,Variation,MM-2CRB,328,id:110,1,1,1,1,Axis,Single Axis (X),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-2CRB,599,id:110,1,1,1,1,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-2CRB,799,id:110,1,1,1,1,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Mircometer Head,1
+,Variation,MM-2CRB,629,id:110,1,1,1,1,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-2CRB,629,id:110,1,1,1,1,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-2CRB,829,id:110,1,1,1,1,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Mircometer Head,1
+,Variation,MM-2CRB,659,id:110,1,1,1,1,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-2CRB,646,id:110,1,1,1,1,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-2CRB,846,id:110,1,1,1,1,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Mircometer Head,1
+,Variation,MM-2CRB,676,id:110,1,1,1,1,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-2CRB,676,id:110,1,1,1,1,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-2CRB,876,id:110,1,1,1,1,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Mircometer Head,1
+,Variation,MM-2CRB,706,id:110,1,1,1,1,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-2CRB,947,id:110,1,1,1,1,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-2CRB,1247,id:110,1,1,1,1,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Mircometer Head,1
+,Variation,MM-2CRB,992,id:110,1,1,1,1,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,Thumb Grip,1
+,Variation,MM-2CRB,992,id:110,1,1,1,1,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-2CRB,1292,id:110,1,1,1,1,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Mircometer Head,1
+,Variation,MM-2CRB,1037,id:110,1,1,1,1,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-6 Torr,1,Actuator,Thumb Grip,1
