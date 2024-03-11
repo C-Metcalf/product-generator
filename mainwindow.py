@@ -89,8 +89,17 @@ class ListDialog(QDialog):
         self.ui.update_value_btn.clicked.connect(self.update_value)
         self.ui.buttonBox.clicked.connect(self.check_result)
         self.ui.new_key_btn.clicked.connect(self.add_key_value)
+        self.ui.edit_key_btn.clicked.connect(self.edit_key)
 
         self.setWindowTitle("Edit List")
+
+    def edit_key(self):
+        current_list = self.dict_list[self.name]
+        current_list[self.ui.new_dict_key.text()] = current_list[self.ui.dict_key.currentText()]
+
+    def delete_key(self):
+        current_list = self.dict_list[self.name]
+        del current_list[self.ui.dict_key.currentText()]
 
     def add_key_value(self):
         key = self.ui.new_dict_key.text()
