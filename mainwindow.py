@@ -4,10 +4,11 @@ import json
 import sys
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QSpacerItem, QSizePolicy, \
-    QButtonGroup
+    QButtonGroup, QDialog
 
 from itertools import product
 
+from ui_dialog import Ui_Dialog
 # Important:
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py, or
@@ -28,10 +29,11 @@ def populate_json_file(json_name, json_data):
         data = json.load(json_file)
         data.update({json_name: json_data})
         new_dict.update(data)
+    update_json_file(new_dict)
 
+def update_json_file(json_data):
     with open('lists.json', 'w') as json_file:
-        json.dump(new_dict, json_file)
-
+        json.dump(json_data, json_file)
 
 def clearLayout(layout):
     while layout.count():
@@ -77,11 +79,65 @@ def calculate_product_price(combination, prices):
     return price_total
 
 
+class ListDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__()
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
+        self.parent = parent
+        self.dict_list = {}
+        self.name = None  # This is to store the name of the dict the user wants to edit
+        self.key = None  # This is to store the key within the dict the user wants to edit
+        self.ui.dict_name.currentIndexChanged.connect(self.populate_keys)
+        self.ui.dict_key.currentIndexChanged.connect(self.populate_value)
+        self.ui.update_value_btn.clicked.connect(self.update_value)
+        self.ui.buttonBox.clicked.connect(self.check_result)
+
+        self.setWindowTitle("Edit List")
+
+    def show(self, dict_list):
+        super().show()
+        self.dict_list = dict_list
+        self.populate_names()
+
+    def check_result(self, btn):
+        if btn.text() == "Save":
+            self.parent.json_list = self.dict_list
+            update_json_file(self.dict_list)
+
+    def populate_names(self):
+        for name in self.dict_list.keys():
+            self.ui.dict_name.addItem(name)
+
+        self.populate_keys()
+
+    def populate_keys(self):
+        self.ui.dict_key.clear()
+        self.name = self.ui.dict_name.currentText()
+        for key in self.dict_list[self.name].keys():
+            self.ui.dict_key.addItem(key)
+
+        self.populate_value()
+
+    def populate_value(self):
+        self.key = self.ui.dict_key.currentText()
+        current_list = self.dict_list[self.name]
+        value = current_list[self.key]
+        self.ui.dict_value.setText(str(value))
+
+    def update_value(self):
+        new_value = self.ui.dict_value.text()
+        current_list = self.dict_list[self.name]
+        current_list.update({self.key: new_value})
+        print(self.dict_list)
+
+
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.list_dialog = ListDialog(self)
 
         # ToDo: After creating the csv file the params should get rid of the Attribute stuff/go back to a defualt list
         self.params = ["Id", "Type", "Name", "Regular price", "Parent"]
@@ -99,15 +155,12 @@ class MainWindow(QMainWindow):
         self.ui.published.clicked.connect(self.toggle_published)
         self.ui.create_list.clicked.connect(self.create_new_list)
         self.ui.edit_list.clicked.connect(self.edit_list)
-        self.ui.save_list.clicked.connect(self.save_list)
         self.ui.csv_btn.clicked.connect(self.create_csv_file)
-
-        self.ui.edit_list.clicked.connect(self.edit_list)
 
         self.populate_json_list()
 
     def edit_list(self):
-        pass
+        self.list_dialog.show(self.json_list)
 
     def set_file_name(self):
         text = self.ui.product_name.text()
@@ -188,18 +241,6 @@ class MainWindow(QMainWindow):
             csv_writer.writerows(price_combos)
         pass
 
-    def save_list(self):
-        # ToDo: Get this to work properly
-        #  Possible solution: Have a pop up widow that has you select the list to edit. Seperate every key and value
-        new_list = {}
-        # Take each line in the text box and split it on the ":". Then add it to the dictinary
-        for line in self.ui.json_list.toPlainText().splitlines():
-            values = json.dumps(line)
-            new_list.update({values[0]: values[1]})
-
-    def edit_list(self):
-        self.ui.json_list.setReadOnly(False)
-
     def populate_json_list(self):
         try:
             with open('lists.json') as json_file:
@@ -209,7 +250,7 @@ class MainWindow(QMainWindow):
         except Exception as ex:
             print(ex)
 
-    def update_showm_json_list(self, display_list):
+    def update_shown_json_list(self, display_list):
         self.ui.json_list.clear()
         for key, value in zip(display_list.keys(), display_list.values()):
             self.ui.json_list.append(f"{key}: {value}")
@@ -220,7 +261,7 @@ class MainWindow(QMainWindow):
         else:
             self.display_json_list.update({btn.text(): self.json_list[btn.text()]})
 
-        self.update_showm_json_list(self.display_json_list)
+        self.update_shown_json_list(self.display_json_list)
 
     def create_list_checkboxes(self, values):
         clearLayout(self.ui.scrollAreaWidgetContents.layout())

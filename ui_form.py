@@ -34,12 +34,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.list_name, 6, 2, 1, 1)
 
-        self.save_list = QPushButton(self.centralwidget)
-        self.save_list.setObjectName(u"save_list")
-        self.save_list.setCheckable(False)
-
-        self.gridLayout.addWidget(self.save_list, 6, 1, 1, 1)
-
         self.csv_btn = QPushButton(self.centralwidget)
         self.csv_btn.setObjectName(u"csv_btn")
 
@@ -66,7 +60,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 256, 365))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 256, 366))
         self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
@@ -165,7 +159,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.list_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Name Of List", None))
-        self.save_list.setText(QCoreApplication.translate("MainWindow", u"Save List", None))
         self.csv_btn.setText(QCoreApplication.translate("MainWindow", u"Create CSV File", None))
         self.csv_file_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Name Of CSV File", None))
         self.edit_list.setText(QCoreApplication.translate("MainWindow", u"Edit List", None))

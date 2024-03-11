@@ -23,16 +23,25 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(400, 300)
+        Dialog.resize(579, 204)
         self.gridLayout = QGridLayout(Dialog)
         self.gridLayout.setObjectName(u"gridLayout")
         self.dict_name = QComboBox(Dialog)
         self.dict_name.setObjectName(u"dict_name")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.dict_name.sizePolicy().hasHeightForWidth())
+        self.dict_name.setSizePolicy(sizePolicy)
+        self.dict_name.setMinimumSize(QSize(160, 0))
+        self.dict_name.setBaseSize(QSize(0, 0))
 
         self.gridLayout.addWidget(self.dict_name, 0, 0, 1, 1)
 
         self.dict_key = QComboBox(Dialog)
         self.dict_key.setObjectName(u"dict_key")
+        sizePolicy.setHeightForWidth(self.dict_key.sizePolicy().hasHeightForWidth())
+        self.dict_key.setSizePolicy(sizePolicy)
 
         self.gridLayout.addWidget(self.dict_key, 0, 1, 1, 1)
 
@@ -58,6 +67,21 @@ class Ui_Dialog(object):
 
         self.gridLayout.addWidget(self.buttonBox, 3, 2, 1, 1)
 
+        self.update_value_btn = QPushButton(Dialog)
+        self.update_value_btn.setObjectName(u"update_value_btn")
+
+        self.gridLayout.addWidget(self.update_value_btn, 2, 2, 1, 1)
+
+        self.new_key_btn = QPushButton(Dialog)
+        self.new_key_btn.setObjectName(u"new_key_btn")
+
+        self.gridLayout.addWidget(self.new_key_btn, 1, 0, 1, 1)
+
+        self.edit_key_btn = QPushButton(Dialog)
+        self.edit_key_btn.setObjectName(u"edit_key_btn")
+
+        self.gridLayout.addWidget(self.edit_key_btn, 2, 0, 1, 1)
+
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
@@ -69,5 +93,8 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
         self.del_dict_key_value.setText(QCoreApplication.translate("Dialog", u"Delete Key Value", None))
+        self.update_value_btn.setText(QCoreApplication.translate("Dialog", u"Update Value", None))
+        self.new_key_btn.setText(QCoreApplication.translate("Dialog", u"New Key", None))
+        self.edit_key_btn.setText(QCoreApplication.translate("Dialog", u"Edit Key", None))
     # retranslateUi
 
