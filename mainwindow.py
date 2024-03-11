@@ -322,9 +322,9 @@ class MainWindow(QMainWindow):
 
     def toggle_review(self):
         if self.ui.customer_review.isChecked():
-            self.added_params.append("Allow customer review")
+            self.added_params.append("Allow customer reviews?")
         if not self.ui.customer_review.isChecked():
-            self.added_params.remove("Allow customer review")
+            self.added_params.remove("Allow customer reviews?")
 
 
 if __name__ == "__main__":

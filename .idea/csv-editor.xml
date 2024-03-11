@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\CSV Files\MM-1CR.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\CSV Files\MM-1CRB.csv">
           <value>
             <Attribute>
@@ -46,6 +53,20 @@
           </value>
         </entry>
         <entry key="\CSV Files\MM-3CRD.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\CSV Files\MM-3M-F.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\CSV Files\MM-3M-FOS.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
