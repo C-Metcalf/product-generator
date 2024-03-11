@@ -16,12 +16,6 @@ from ui_dialog import Ui_Dialog
 from ui_form import Ui_MainWindow
 
 
-# ToDo: Make a pop up window for editting a list. Have a combo box that has all the different list names.
-#  When a user selects the name that will populate another combo box with the keys of that list.
-#  Once that key has been selected the value corrisponding to the key will be populated and allow the user to edit the
-#  value if need be
-
-
 def populate_json_file(json_name, json_data):
     new_dict = {}
 
@@ -31,9 +25,11 @@ def populate_json_file(json_name, json_data):
         new_dict.update(data)
     update_json_file(new_dict)
 
+
 def update_json_file(json_data):
     with open('lists.json', 'w') as json_file:
         json.dump(json_data, json_file)
+
 
 def clearLayout(layout):
     while layout.count():
@@ -92,8 +88,15 @@ class ListDialog(QDialog):
         self.ui.dict_key.currentIndexChanged.connect(self.populate_value)
         self.ui.update_value_btn.clicked.connect(self.update_value)
         self.ui.buttonBox.clicked.connect(self.check_result)
+        self.ui.new_key_btn.clicked.connect(self.add_key_value)
 
         self.setWindowTitle("Edit List")
+
+    def add_key_value(self):
+        key = self.ui.new_dict_key.text()
+        value = int(self.ui.dict_value.text())
+        current_list = self.dict_list[self.name]
+        current_list.update({key: value})
 
     def show(self, dict_list):
         super().show()
@@ -106,6 +109,7 @@ class ListDialog(QDialog):
             update_json_file(self.dict_list)
 
     def populate_names(self):
+        self.ui.dict_name.clear()
         for name in self.dict_list.keys():
             self.ui.dict_name.addItem(name)
 
@@ -126,10 +130,9 @@ class ListDialog(QDialog):
         self.ui.dict_value.setText(str(value))
 
     def update_value(self):
-        new_value = self.ui.dict_value.text()
+        new_value = int(self.ui.dict_value.text())
         current_list = self.dict_list[self.name]
         current_list.update({self.key: new_value})
-        print(self.dict_list)
 
 
 class MainWindow(QMainWindow):
@@ -139,7 +142,6 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.list_dialog = ListDialog(self)
 
-        # ToDo: After creating the csv file the params should get rid of the Attribute stuff/go back to a defualt list
         self.params = ["Id", "Type", "Name", "Regular price", "Parent"]
         self.added_params = []
         self.dict_list = ()
@@ -290,10 +292,6 @@ class MainWindow(QMainWindow):
 
         populate_json_file(self.ui.list_name.text(), new_list)
         self.populate_json_list()
-
-    def convert_list_to_tuple(self):
-        # ToDO: When the user presses create list turn the three lists into tuples
-        pass
 
     def toggle_published(self):
         if self.ui.published.isChecked():

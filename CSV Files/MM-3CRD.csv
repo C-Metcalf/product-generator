@@ -1,0 +1,6 @@
+Id,Type,Name,Regular price,Parent,Allow customer review,In Stock?,Visible,Published,Attribute 0 Name,Attribute 0 value(s),Attribute 0 global,Attribute 1 Name,Attribute 1 value(s),Attribute 1 global,Attribute 2 Name,Attribute 2 value(s),Attribute 2 global
+140,Variable,MM-3CRD,0,,1,1,1,1,Axis,"Single Axis (X), Dual Axis-Flat (XY), Dual Axis-Edge Mount (XZ), Three Axis (XYZ)",1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-3CRD,750,id:140,1,1,1,1,Axis,Single Axis (X),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-3CRD,1050,id:140,1,1,1,1,Axis,Dual Axis-Flat (XY),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-3CRD,1100,id:140,1,1,1,1,Axis,Dual Axis-Edge Mount (XZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew,1
+,Variation,MM-3CRD,1400,id:140,1,1,1,1,Axis,Three Axis (XYZ),1,Vacuum Compatibility,10^-3 Torr,1,Actuator,80 TPI Thumbscrew,1
